@@ -1,5 +1,6 @@
 # Rodney Amateur Radio Club - NZART Branch 71
 ![RARC logo](./assets/images/rarc_logo.png)
+
 Welcome to the Rodney Amateur Radio Club - RARC
 Whilst RARC meets in Wellsford, our members are spread across the Rodney and Kaipara districts - some even further afield such as the Far North and Australia.
 
