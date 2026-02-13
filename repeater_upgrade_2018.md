@@ -12,7 +12,7 @@ Mike ZL1MRC ordered one and quickly received a brand new DP-CP22E VHF collinear 
 
 Mike then performed some final tuning steps (that turned out to be quite tricky) then he waterproofed and secured all.
 The old RG213 cable was replaced with good quality LMR-400 and new high quality connectors.
-![bad antenna](./assets/images/bad_antenna.png)
+<img src="./assets/images/bad_antenna.png" alt="bad antenna" style="float: right; margin-left: 15px; width: 50%;"/>
 
 On a sunny morning Mike installed the new antenna at the repeater site and since then we get amazing good reports.
 The best one I have heard was that someone covered the repeater from inside the Puhoi tunnel. Good reports
