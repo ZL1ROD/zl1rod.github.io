@@ -2,7 +2,7 @@
 
 The Rodney Amateur Radio Club has it's own 2m VHF repeater and has a callsign of ZL1ROD.
 The repeater provides excellent coverage throughout the Rodney District and the surrounding areas.
-It is located close to the original SH1 North of Auckland near the town of Wellsford.
+It is located close to the original SH1 North of Auckland near the town of Warkworth.
 
 Any licensed radio operator is welcome to use our repeater and should set their radio to
 receive on 147.300MHz, with a +600kHz positive offset for transmission on 147.900MHz.
