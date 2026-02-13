@@ -14,3 +14,6 @@ Repeaters:
  - [Rodney 730](./repeater_730.md)
  - [Hoteo 685](./repeater_685.md)
 
+Meetings:
+ - [Wellsford Library](./meetings.md) 2nd Saturday of the month.
+
