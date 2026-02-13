@@ -8,11 +8,11 @@ Taking the antenna down, we saw cracks and suspected water ingress. The coax cab
 corrosion too. The build of the antenna was such that it was never meant to be serviced or disassembled so there was
 no hope for any fix. We decided it was time to go shopping and get ourselves a new antenna. Our repeater trustee
 Mike ZL1MRC ordered one and quickly received a brand new DP-CP22E VHF collinear from the Com-Centre in Auckland.
-<img src="./assets/images/bad_coax.png" alt="bad coax" style="float: right; margin-left: 15px; width: 60%;"/>
+<img src="./assets/images/bad_coax.png" alt="bad coax" style="float: right; margin-left: 15px; width: 25%;"/>
 
-<img src="./assets/images/bad_antenna.png" alt="bad antenna" style="float: right; margin-left: 15px; width: 60%;"/>
 Mike then performed some final tuning steps (that turned out to be quite tricky) then he waterproofed and secured all.
 The old RG213 cable was replaced with good quality LMR-400 and new high quality connectors.
+<img src="./assets/images/bad_antenna.png" alt="bad antenna" style="float: right; margin-left: 15px; width: 25%;"/>1
 
 
 On a sunny morning Mike installed the new antenna at the repeater site and since then we get amazing good reports.
