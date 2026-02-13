@@ -17,3 +17,6 @@ Repeaters:
 Meetings:
  - [Wellsford Library](./meetings.md) 2nd Saturday of the month.
 
+Club Information:
+ - [costs, contacts etc](./contact.md)
+
