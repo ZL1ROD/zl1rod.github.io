@@ -8,3 +8,5 @@ plugins:
   - jekyll-remote-theme
 
 minimal_mistakes_skin: "default"
+
+navigation: true
