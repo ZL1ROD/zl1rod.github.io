@@ -1,7 +1,10 @@
 main:
   - title: "Home"
     url: /
-  - title: "Repeater Info"
+  - title: "Repeaters"
     url: /repeater/
-  - title: "History"
+  - title: "Club History"
     url: /history/
+  - title: "2018 upgrade"
+    url: /2018upgrade/
+    
