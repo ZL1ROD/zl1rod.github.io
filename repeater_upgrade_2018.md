@@ -1,4 +1,8 @@
-## 2018 Upgrade for the 730 Repeater
+---
+layout: single
+title: "2018 Upgrade for the 730 Repeater"
+permalink: /2018upgrade/
+---
 
 In the latter half of 2017 our repeater started having intermittent issues which gradually increased in severity.
 Mike (ZL1MRC) found out that the SWR had worsened over time and actually rose up to a non-acceptable level. We had to
