@@ -1,3 +1,10 @@
-title: ZL1ROD Rodney Amateur Radio Club
-description: Welcome to our website
-theme: jekyll-theme-minimal
+title: "ZL1ROD Rodney Amateur Radio Club"
+description: "Welcome to our club website"
+
+remote_theme: "mmistakes/minimal-mistakes"
+
+plugins:
+  - jekyll-include-cache
+  - jekyll-remote-theme
+
+minimal_mistakes_skin: "default"
