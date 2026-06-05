@@ -1,6 +1,7 @@
 ---
-layout: default
-title: "ZL1ROD Home"
+layout: single
+title: "Welcome to ZL1ROD"
+permalink: /
 ---
 
 # Rodney Amateur Radio Club - NZART Branch 71
