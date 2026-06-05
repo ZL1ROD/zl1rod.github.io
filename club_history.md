@@ -1,9 +1,8 @@
 ---
 layout: single
-title: "Our History"
+title: "Club History"
 permalink: /history/
 ---
-## Club History
 
 RARC started life as the Wellsford Radio Club in the 1950's by its founders, Eycke Zimmerman ZL1AGQ and Alan Dale ZL1ABL.
 Alas Alan and Eycke are no longer with us. Those initial meetings first took place in Eycke's basement but later moved to an
