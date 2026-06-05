@@ -1,3 +1,9 @@
+---
+layout: single
+title: "Repeater Information"
+permalink: /repeater/
+---
+
 ## 730 Repeater
 
 The Rodney Amateur Radio Club has it's own 2m VHF repeater and has a callsign of ZL1ROD.
