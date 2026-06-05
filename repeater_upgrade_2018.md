@@ -23,4 +23,5 @@ from Wellsford to South Auckland are all reassuring that we did a great job with
 <div style="clear: both;"></div>
 
 Thank you Mike - You are a great and competent Repeater Trustee!
+
 ![Zl1MRC](./assets/images/repeater_trustee_zl1mrc.png)
