@@ -1,10 +1,9 @@
 ---
 layout: home
-title: "Welcome to ZL1ROD"
+title: "Rodney Amateur Radio Club - NZART Branch 71"
 permalink: /
 ---
 
-# Rodney Amateur Radio Club - NZART Branch 71
 ![RARC logo](./assets/images/rarc_logo.png)
 
 Welcome to the Rodney Amateur Radio Club - RARC
