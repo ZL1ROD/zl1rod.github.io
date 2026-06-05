@@ -1,3 +1,8 @@
+---
+layout: default
+title: "ZL1ROD Home"
+---
+
 # Rodney Amateur Radio Club - NZART Branch 71
 ![RARC logo](./assets/images/rarc_logo.png)
 
