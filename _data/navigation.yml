@@ -1,0 +1,7 @@
+main:
+  - title: "Home"
+    url: /
+  - title: "Repeater Info"
+    url: /repeater/
+  - title: "History"
+    url: /history/
