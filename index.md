@@ -1,7 +1,8 @@
 ---
-layout: home
+layout: single
 title: "Rodney Amateur Radio Club - NZART Branch 71"
 permalink: /
+toc: true
 ---
 
 ![RARC logo](./assets/images/rarc_logo.png)
