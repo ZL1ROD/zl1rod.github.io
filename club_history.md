@@ -8,7 +8,7 @@ Alas Alan and Eycke are no longer with us. Those initial meetings first took pla
 almost derelict council building in School Road Wellsford - the same location was also the CD HQ for the area.
 
 <figure style="text-align: center;">
-  <img src="/assets/images/nfdc_1970.png" alt="Crew in tent at Morial Park" width="60%">
+  <img src="/assets/images/nfdc_1970.jpg" alt="Crew in tent at Morial Park" width="60%">
   <figcaption style="margin-top: 10px; font-style: italic;">
     National field day 1970
   </figcaption>
@@ -25,7 +25,7 @@ changed to the Scout Hall in Warkworth. Brian Nelson ZL1AZU of Warkworth was a v
 The club knew how to enjoy themeselves back then as this Break-In magazine article showed during the [Branch 71 Picnic to Kawau Island in 1975](./assets/pdf/break-in_april_1975.pdf). The last couple of paragraphs summed the trip up,
 
 <figure style="text-align: center;">
-  <img src="/assets/images/picnic.png" alt="Picnic at the beach" width="60%">
+  <img src="/assets/images/picnic.jpg" alt="Picnic at the beach" width="60%">
   <figcaption style="margin-top: 10px; font-style: italic;">
     picnic
   </figcaption>
@@ -37,14 +37,14 @@ The club knew how to enjoy themeselves back then as this Break-In magazine artic
 ### National Field Day 1972 - Station ZL1ABL
 
 <figure style="text-align: center;">
-  <img src="/assets/images/nfdc_1972_1.png" alt="Tents and car in a field" width="60%">
+  <img src="/assets/images/nfdc_1972_1.jpg" alt="Tents and car in a field" width="60%">
   <figcaption style="margin-top: 10px; font-style: italic;">
     ABL field day
   </figcaption>
 </figure>
 
 <figure style="text-align: center;">
-  <img src="/assets/images/nfdc_1972_2.png" alt="Murray 1BLD operating the 1ABL field day station" width="60%">
+  <img src="/assets/images/nfdc_1972_2.jpg" alt="Murray 1BLD operating the 1ABL field day station" width="60%">
   <figcaption style="margin-top: 10px; font-style: italic;">
     1BLD operating
   </figcaption>
@@ -53,7 +53,7 @@ The club knew how to enjoy themeselves back then as this Break-In magazine artic
 ### Civil Defence Meeting in Wellsford 1973
 
 <figure style="text-align: center;">
-  <img src="/assets/images/cd_hq_wellsford_1973.png" alt="composite photo of meeting" width="60%">
+  <img src="/assets/images/cd_hq_wellsford_1973.jpg" alt="composite photo of meeting" width="60%">
   <figcaption style="margin-top: 10px; font-style: italic;">
     Civil Defence composite image
   </figcaption>
