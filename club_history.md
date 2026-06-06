@@ -35,7 +35,7 @@ The club knew how to enjoy themeselves back then as this Break-In magazine artic
 > The afternoon concluded all too soon with afternoon tea at Ron's house and subsequent embarkation for the return trip, back to the hustle and bustle of the mainland. Thank you Ron, for so graciously facillitating the invasion of your privacy by such a mob of eager beavers. All those present enjoyed the day.
 >> Moral of the story: when next Branch 71 holds a picnic, put on your running shoes, pack your lunch and togs and come along. A pleasant relaxing day is promised to one and all.
 
-## National Field Day 1972 - Station ZL1ABL
+### National Field Day 1972 - Station ZL1ABL
 
 <figure style="text-align: center;">
   <img src="/assets/images/nfdc_1972_1.png" alt="Tents and car in a field" width="60%">
@@ -51,7 +51,7 @@ The club knew how to enjoy themeselves back then as this Break-In magazine artic
   </figcaption>
 </figure>
 
-## Civil Defence Meeting in Wellsford 1973
+### Civil Defence Meeting in Wellsford 1973
 
 <figure style="text-align: center;">
   <img src="/assets/images/cd_hq_wellsford_1973.png" alt="composite photo of meeting" width="60%">
