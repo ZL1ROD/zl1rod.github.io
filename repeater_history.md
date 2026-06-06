@@ -57,7 +57,7 @@ Below are several photos of the repeater housing at the new site with ZL1KEN, ZL
 <figure style="text-align: center;">
   <img src="/assets/images/zl1rod_zl1ken_zl2bcb_zl2mr.jpg" alt="ZL1KEN, ZL2BCB, and ZL2MR by hut" width="60%">
   <figcaption style="margin-top: 10px; font-style: italic;">
-    Its installed
+    2010 Its installed.
   </figcaption>
 </figure>
 
