@@ -1,4 +1,4 @@
-<img width="1000" height="390" alt="image" src="https://github.com/user-attachments/assets/d9f12cee-91b3-4fed-926b-183b3e9a3f8d" />---
+---
 title: "Early History of the Rodney Amateur Radio Repeater"
 permalink: /repeater_history/
 ---
