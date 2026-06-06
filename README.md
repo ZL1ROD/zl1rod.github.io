@@ -1,8 +1,9 @@
 [![pages-build-deployment](https://github.com/ZL1ROD/zl1rod.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/ZL1ROD/zl1rod.github.io/actions/workflows/pages/pages-build-deployment)
 
-![Made with PyScript](https://shields.io)
+![Static Badge](https://img.shields.io/badge/Made_with-Pyscript-orange)
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Admin/zl1rod.github.io)
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/ZL1rod/zl1rod.github.io)
 
 
 ![Repo Size](https://shields.io)
