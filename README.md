@@ -1,7 +1,8 @@
 [![pages-build-deployment](https://github.com/ZL1ROD/zl1rod.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/ZL1ROD/zl1rod.github.io/actions/workflows/pages/pages-build-deployment)
 
 ![Made with PyScript](https://shields.io)
-![Latest Commit](https://shields.io)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/:user/:repo)
+
 ![Repo Size](https://shields.io)
 
 This repo holds the ZL1ROD Amateur radio club's website.
