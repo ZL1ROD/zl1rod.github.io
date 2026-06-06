@@ -22,4 +22,5 @@ defaults:
       # overriding toc instead to show widgets
       sidebar:
         nav: "site_sidebar" # Injects your custom sidebar menu configuration automatically
+      toc: true # Tells the theme framework to construct the right column space on all pages
 
