@@ -4,7 +4,7 @@ permalink: /repeater_history/
 ---
 By Alan Dale, ZL1ABL
 
-<img src="/assets/images/zl1rod_plaque.jpg" class="align-right" alt="bad coax" width="25%">
+<img src="/assets/images/zl1rod_plaque.jpg" class="align-right" alt="bad coax" width="35%">
 It was originally set up some distance beyond the end of Rodney Road on the eastern slopes of Mt Tamahunga (the highest hill in Rodney).
 From this site, the Oil Refinery and the Auckland Museum are visible.
 The site was good for the North and Auckland but gave very poor coverage to the West and for servicing it was a 70 mile journey.
@@ -61,10 +61,21 @@ Below are several photos of the repeater housing at the new site with ZL1KEN, ZL
   </figcaption>
 </figure>
 
-<figure style="text-align: center;">
-  <img src="/assets/images/2013 rpt-02 ZL1ROD_repeater_1.jpg" alt="Three guys working on the hut" width="60%">
-  <figcaption style="margin-top: 10px; font-style: italic;">
-    Getting it sorted
-  </figcaption>
-</figure>
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin: 20px 0;">
+
+  <figure style="text-align: center; margin: 0; flex: 1;">
+    <img src="/assets/images/2013 rpt-02 ZL1ROD_repeater_1.jpg" alt="Three guys working on the hut" style="width: 100%; max-width: 400px; height: auto;">
+    <figcaption style="margin-top: 10px; font-style: italic; font-size: 0.8em;">
+      Getting it sorted
+    </figcaption>
+  </figure>
+
+  <figure style="text-align: center; margin: 0; flex: 1;">
+    <img src="/assets/images/2013 rpt-02 ZL1ROD_repeater_2.jpg" alt="Alt view of Three guys" style="width: 100%; max-width: 400px; height: auto;">
+    <figcaption style="margin-top: 10px; font-style: italic; font-size: 0.8em;">
+      Almost there
+    </figcaption>
+  </figure>
+
+</div>
 
