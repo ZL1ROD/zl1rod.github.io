@@ -1,7 +1,8 @@
 [![pages-build-deployment](https://github.com/ZL1ROD/zl1rod.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/ZL1ROD/zl1rod.github.io/actions/workflows/pages/pages-build-deployment)
 
 ![Made with PyScript](https://shields.io)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/:user/zl1rod.github.io)
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Admin/zl1rod.github.io)
 
 
 ![Repo Size](https://shields.io)
