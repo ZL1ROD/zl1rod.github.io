@@ -1,13 +1,14 @@
----
+<img width="1000" height="390" alt="image" src="https://github.com/user-attachments/assets/d9f12cee-91b3-4fed-926b-183b3e9a3f8d" />---
 title: "Early History of the Rodney Amateur Radio Repeater"
 permalink: /repeater_history/
 ---
 By Alan Dale, ZL1ABL
 
-
+<img src="/assets/images/zl1rod_plaque.jpg" class="align-right" alt="bad coax" width="25%">
 It was originally set up some distance beyond the end of Rodney Road on the eastern slopes of Mt Tamahunga (the highest hill in Rodney).
 From this site, the Oil Refinery and the Auckland Museum are visible.
 The site was good for the North and Auckland but gave very poor coverage to the West and for servicing it was a 70 mile journey.
+<div style="clear: both;"></div>
 
 To start with it was powered by a wind generator which had been dynamically balanced by the Naval Base through the good offices
 of Trevor Lowry the Council CD Officer ex RNZAF. It was supposed to turn out of the wind in gales but when a strong gale
@@ -52,4 +53,18 @@ until December 2010 when it was shifted to the present site, which has proved to
 Rodney area which is really the main function for the repeater.
 
 Below are several photos of the repeater housing at the new site with ZL1KEN, ZL2BCB & ZL2MR
+
+<figure style="text-align: center;">
+  <img src="/assets/images/zl1rod_zl1ken_zl2bcb_zl2mr.jpg" alt="ZL1KEN, ZL2BCB, and ZL2MR by hut" width="60%">
+  <figcaption style="margin-top: 10px; font-style: italic;">
+    Its installed
+  </figcaption>
+</figure>
+
+<figure style="text-align: center;">
+  <img src="/assets/images/2013 rpt-02 ZL1ROD_repeater_1.jpg" alt="Three guys working on the hut" width="60%">
+  <figcaption style="margin-top: 10px; font-style: italic;">
+    Getting it sorted
+  </figcaption>
+</figure>
 
