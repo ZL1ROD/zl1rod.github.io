@@ -1,10 +1,23 @@
 main:
-  - title: "Home"
-    url: /
-  - title: "Repeaters"
-    url: /repeater/
-  - title: "Club History"
-    url: /history/
-  - title: "2018 upgrade"
-    url: /2018upgrade/
+  - title: "Launch App"
+    url: /apps/iss_visible/
     
+site_sidebar:
+  - title: "Navigation"
+    children:
+      - title: "Home"
+        url: /
+      - title: "Repeaters"
+        url: /repeater/
+
+  - title: "History Pages"
+    children:
+      - title: "Club History"
+        url: /history/
+      - title: "Repeater History"
+        url: /repeater_history/  # (Example placeholder for future sub-pages)
+
+  - title: "Repeater Work"
+    children:
+      - title: "2018 Upgrade"
+        url: /repeater-work/2018upgrade/
