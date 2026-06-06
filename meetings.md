@@ -1,6 +1,6 @@
 ---
 title: "Our Meeting Place"
-permalink: /meetings.md/
+permalink: /meetings/
 ---
 
 Rodney Amateur Radio Club meets once a month in the "Meeting Room" at the Wellsford Memorial Library.
