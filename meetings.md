@@ -1,9 +1,19 @@
-## Our Meeting Place
+---
+title: "Our Meeting Place"
+permalink: /meetings.md/
+---
+
 Rodney Amateur Radio Club meets once a month in the "Meeting Room" at the Wellsford Memorial Library.
 Meetings usually take place at 10am on the second Saturday of every month with the exception of December,
 where it is the first Saturday of the month and, January when there is no meeting. Tea, coffee and sugar are provided free.
 
-![Wellsfor library](./assets/images/wellsford_library.jpg)
+<figure style="text-align: center;">
+  <img src="/assets/images/wellsford_library.jpg" alt="Wellsford library from the front" width="60%">
+  <figcaption style="margin-top: 10px; font-style: italic;">
+    Wellsford library
+  </figcaption>
+</figure>
+
 The Wellsford Memorial Library is a remarkable facility that has 125 solar panels on the roof to generate its power and supply
 any surplus to the mains. There is under floor heating by water heated from solar power and it has four mini
 turrets’ with automatically controlled louvers. There are automatically controlled fans and lights.
