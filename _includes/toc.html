@@ -1,13 +1,14 @@
-<!-- Custom Right-Hand Column Space Weather Panel -->
-<aside class="sidebar__right sticky" style="background: #1e1e24; color: #fff; padding: 15px; border-radius: 6px; font-family: monospace; border: 1px solid #444; width: 100%;">
-  <h4 style="margin-top: 0; color: #ff9800; border-bottom: 1px solid #444; padding-bottom: 5px; font-size: 1.1em; letter-spacing: 0;">📡 Solar Telemetry</h4>
+<nav class="toc">
+  <header><h4 class="nav__title" style="letter-spacing: 0;"><i class="fas fa-satellite-dish"></i> Solar Telemetry</h4></header>
   
-  <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95em;">
-    <div><strong>SSN (Sunspots):</strong> <span id="toc-solar-ssn" style="color: #69f0ae;">Loading...</span></div>
-    <div><strong>SFI (Solar Flux):</strong> <span id="toc-solar-sfi" style="color: #69f0ae;">Loading...</span></div>
-    <div><strong>Planetary Kp:</strong> <span id="toc-solar-kp">Loading...</span></div>
+  <div style="background: #1e1e24; color: #fff; padding: 15px; border-radius: 6px; font-family: monospace; border: 1px solid #444; width: 100%;">
+    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95em;">
+      <div><strong>SSN (Sunspots):</strong> <span id="toc-solar-ssn" style="color: #69f0ae;">Loading...</span></div>
+      <div><strong>SFI (Solar Flux):</strong> <span id="toc-solar-sfi" style="color: #69f0ae;">Loading...</span></div>
+      <div><strong>Planetary Kp:</strong> <span id="toc-solar-kp">Loading...</span></div>
+    </div>
   </div>
-</aside>
+</nav>
 
 <script>
   async function fetchTocSolarData() {
