@@ -71,7 +71,7 @@ Below are several photos of the repeater housing at the new site with ZL1KEN, ZL
   </figure>
 
   <figure style="text-align: center; margin: 0; flex: 1;">
-    <img src="/assets/images/2013 rpt-02 ZL1ROD_repeater_2.jpg" alt="Alt view of Three guys" style="width: 100%; max-width: 400px; height: auto;">
+    <img src="/assets/images/2013 rpt-01 ZL1ROD_repeater_2.jpg" alt="Alt view of Three guys" style="width: 100%; max-width: 400px; height: auto;">
     <figcaption style="margin-top: 10px; font-style: italic; font-size: 0.8em;">
       Almost there
     </figcaption>
@@ -79,3 +79,20 @@ Below are several photos of the repeater housing at the new site with ZL1KEN, ZL
 
 </div>
 
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin: 20px 0;">
+
+  <figure style="text-align: center; margin: 0; flex: 1;">
+    <img src="/assets/images/zl1rod_003.jpg" alt="Hut with open door" style="width: 100%; max-width: 400px; height: auto;">
+    <figcaption style="margin-top: 10px; font-style: italic; font-size: 0.8em;">
+      The hut with rack
+    </figcaption>
+  </figure>
+
+  <figure style="text-align: center; margin: 0; flex: 1;">
+    <img src="/assets/images/zl1rod_006.jpg" alt="Radio gear" style="width: 100%; max-width: 400px; height: auto;">
+    <figcaption style="margin-top: 10px; font-style: italic; font-size: 0.8em;">
+      Tait T530 (VHF Series I) and the T535 (VHF Series II) 
+    </figcaption>
+  </figure>
+
+</div>
