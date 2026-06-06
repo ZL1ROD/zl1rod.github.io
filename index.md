@@ -16,8 +16,8 @@ We are very much focused on attracting new members to the club. You don't need t
 If you wish to enquire about joining RARC or just have an general enquiry then please contact one of us by email zl1rod.rarc@gmail.com.
 
 Repeaters:
- - [Rodney 730](./repeater_730.md)
- - [Hoteo 685](./repeater_685.md)
+ - [Rodney 730](/repeater_730.md)
+ - [Hoteo 685](/repeater/#hoteo-685-repeater)
 
 Meetings:
  - [Wellsford Library](./meetings.md) 2nd Saturday of the month.
