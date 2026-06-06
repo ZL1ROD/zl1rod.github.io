@@ -1,0 +1,48 @@
+<!-- Custom Right-Hand Column Space Weather Panel -->
+<aside class="sidebar__right sticky" style="background: #1e1e24; color: #fff; padding: 15px; border-radius: 6px; font-family: monospace; border: 1px solid #444; width: 100%;">
+  <h4 style="margin-top: 0; color: #ff9800; border-bottom: 1px solid #444; padding-bottom: 5px; font-size: 1.1em; letter-spacing: 0;">📡 Solar Telemetry</h4>
+  
+  <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95em;">
+    <div><strong>SSN (Sunspots):</strong> <span id="toc-solar-ssn" style="color: #69f0ae;">Loading...</span></div>
+    <div><strong>SFI (Solar Flux):</strong> <span id="toc-solar-sfi" style="color: #69f0ae;">Loading...</span></div>
+    <div><strong>Planetary Kp:</strong> <span id="toc-solar-kp">Loading...</span></div>
+  </div>
+</aside>
+
+<script>
+  async function fetchTocSolarData() {
+    try {
+      // 1. Fetch Sunspot Number & Solar Flux
+      const indicesResponse = await fetch('https://noaa.gov');
+      const indicesData = await indicesResponse.json();
+      const latestRow = indicesData[indicesData.length - 1];
+      
+      document.getElementById('toc-solar-ssn').innerText = Math.round(latestRow['ssn']) || 'N/A';
+      document.getElementById('toc-solar-sfi').innerText = Math.round(latestRow['f10.7']) || 'N/A';
+
+      // 2. Fetch Live Planetary Kp Index status
+      const kpResponse = await fetch('https://noaa.gov');
+      const kpData = await kpResponse.json();
+      const latestKp = kpData[kpData.length - 1];
+      
+      const kpElement = document.getElementById('toc-solar-kp');
+      kpElement.innerText = latestKp['kp_index'];
+      
+      // Color code Kp conditions (Green = Quiet, Red = Storm warnings)
+      if (latestKp['kp_index'] >= 4) {
+        kpElement.style.color = '#ff5252';
+        kpElement.style.fontWeight = 'bold';
+      } else {
+        kpElement.style.color = '#69f0ae';
+      }
+    } catch (error) {
+      console.error('Error reading solar stream values:', error);
+      document.getElementById('toc-solar-ssn').innerText = 'Offline';
+    }
+  }
+
+  // Execute on load phase
+  fetchTocSolarData();
+  // Refresh statistics every 15 minutes
+  setInterval(fetchTocSolarData, 900000);
+</script>
