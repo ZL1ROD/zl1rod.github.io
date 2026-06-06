@@ -8,7 +8,7 @@ In the latter half of 2017 our repeater started having intermittent issues which
 Mike (ZL1MRC) found out that the SWR had worsened over time and actually rose up to a non-acceptable level. We had to
 take the repeater offline to prevent it from overloading and causing further damage due to the very high SWR.
 
-<img src="/assets/images/bad_coax.png" class="align-right" alt="bad coax" width="25%">
+<img src="/assets/images/bad_coax.png" class="align-right" alt="bad coax" width="30%">
 Taking the antenna down, we saw cracks and suspected water ingress. The coax cable looked very poor and showed
 corrosion too.
 The build of the antenna was such that it was never meant to be serviced or disassembled so there was
@@ -17,7 +17,7 @@ Mike ZL1MRC ordered one and quickly received a brand new DP-CP22E VHF collinear 
 <div style="clear: both;"></div>
 
 
-<img src="/assets/images/bad_antenna.png" alt="bad antenna" class="align-right margin-left: 15px;" width="25%"/>
+<img src="/assets/images/bad_antenna.png" alt="bad antenna" class="align-right margin-left: 15px;" width="30%"/>
 Mike then performed some final tuning steps (that turned out to be quite tricky) then he waterproofed and secured all.
 The old RG213 cable was replaced with good quality LMR-400 and new high quality connectors.
 
@@ -28,4 +28,9 @@ from Wellsford to South Auckland are all reassuring that we did a great job with
 
 Thank you Mike - You are a great and competent Repeater Trustee!
 
-![Zl1MRC](./assets/images/repeater_trustee_zl1mrc.png)
+<figure style="text-align: center;">
+  <img src="/assets/images/repeater_trustee_zl1mrc.png" alt="Mike 1MRC next to repeater hut" width="60%">
+  <figcaption style="margin-top: 10px; font-style: italic;">
+    Zl1MRC
+  </figcaption>
+</figure>
