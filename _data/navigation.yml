@@ -1,7 +1,6 @@
 main:
   - title: "Launch App"
     url: /apps/iss_visible/
-    
 site_sidebar:
   - title: "Navigation"
     children:
@@ -13,7 +12,6 @@ site_sidebar:
         url: /repeater/
       - title: "Contact"
         url: /contact/
-
   - title: "History Pages"
     children:
       - title: "Club History"
@@ -25,3 +23,10 @@ site_sidebar:
     children:
       - title: "2018 Upgrade"
         url: /repeater_upgrade_2018/
+
+  - title: "Logs & Archives"
+    children:
+      - title: "Browse by Category"
+        url: /categories/
+      - title: "Browse by Tag"
+        url: /tags/
