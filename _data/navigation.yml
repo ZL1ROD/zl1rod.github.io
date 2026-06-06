@@ -12,14 +12,16 @@ site_sidebar:
         url: /repeater/
       - title: "Contact"
         url: /contact/
+  - title: "News & Logs"
+        url: /news/           # Points straight to your new chronological feed
   - title: "History Pages"
     children:
       - title: "Club History"
         url: /history/
       - title: "Repeater History"
-        url: /repeater_history/  # (Example placeholder for future sub-pages)
+        url: /repeater_history/
 
-  - title: "Logs & Archives"
+  - title: "Tags"
     children:
       - title: "Browse by Category"
         url: /categories/
