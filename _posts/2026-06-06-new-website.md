@@ -3,6 +3,12 @@ layout: single
 title: "New website"
 date: 2026-06-06
 excerpt: "The old one's server finally failed."
+
+# Taxonomy Options
+categories:
+  - Upgrades
+tags:
+  - Website
 ---
 
 ### System Upgrades
