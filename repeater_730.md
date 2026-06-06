@@ -1,10 +1,9 @@
 ---
-layout: single
 title: "Repeater Information"
 permalink: /repeater/
 ---
 
-## 730 Repeater
+### 730 Repeater
 
 The Rodney Amateur Radio Club has it's own 2m VHF repeater and has a callsign of ZL1ROD.
 The repeater provides excellent coverage throughout the Rodney District and the surrounding areas.
@@ -15,5 +14,10 @@ receive on 147.300MHz, with a +600kHz positive offset for transmission on 147.90
 
 RARC runs its own VHF net on 730 every Tuesday night starting at 7:30pm. You are most welcome to join us.
 
-You can read about the [repeater history](./repeater_history.md) behind the clubs 730 repeater and
-also check out the [2018 upgrade](./repeater_upgrade_2018.md) to the repeater.
+### 685 Repeater
+
+The club has installed a new repeater in the Hoteo/Kaipara Flats region on the top of a range of hills near the new motorway.
+
+
+You can read about the [repeater history](/repeater_history.md) behind the clubs 730 repeater and
+also check out the [2018 upgrade](/repeater_upgrade_2018.md) to the repeater.
