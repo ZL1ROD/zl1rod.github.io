@@ -18,7 +18,8 @@ defaults:
       type: "pages" # Applies specifically to static page files (.md, .html)
     values:
       layout: "single" # Forces pages to use the layout container that supports sidebars
-      classes: "wide" # Forces ALL markdown pages to use the expanded right margin layout
+      #classes: "wide" # Forces ALL markdown pages to use the expanded right margin layout
+      # overriding toc instead to show widgets
       sidebar:
         nav: "site_sidebar" # Injects your custom sidebar menu configuration automatically
 
