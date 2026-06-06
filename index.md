@@ -9,7 +9,7 @@ permalink: /
 Welcome to the Rodney Amateur Radio Club - RARC
 Whilst RARC meets in Wellsford, our members are spread across the Rodney and Kaipara districts - some even further afield such as the Far North and Australia.
 
-RARC started life as the Wellsford Radio Club in the 1950's by its founders, Eycke Zimmerman ZL1AGQ and Alan Dale ZL1ABL, Alan is still a member and attends all our meetings! You can find out more about the [club's history here](./club_history.md).
+RARC started life as the Wellsford Radio Club in the 1950's by its founders, Eycke Zimmerman ZL1AGQ and Alan Dale ZL1ABL. You can find out more about the [club's history here](./club_history.md).
 
 We are very much focused on attracting new members to the club. You don't need to be a licenced operator, we welcome those interested in wanting to become amateur radio operators too. RARC's yearly membership subscription is very reasonably priced.
 
