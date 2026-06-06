@@ -7,8 +7,12 @@ site_sidebar:
     children:
       - title: "Home"
         url: /
+      - title: "Meetings"
+        url: /meetings/
       - title: "Repeaters"
         url: /repeater/
+      - title: "Contact"
+        url: /contact/
 
   - title: "History Pages"
     children:
