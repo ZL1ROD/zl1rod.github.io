@@ -32,8 +32,8 @@ The club knew how to enjoy themeselves back then as this Break-In magazine artic
   </figcaption>
 </figure>
 
-> The afternoon concluded all too soon with afternoon tea at Ron's house and subsequent embarkation for the return trip, back to the hustle and bustle of the mainland. Thank you Ron, for so graciously facil- litating the invasion of your privacy by such a mob of eager beavers. All those present enjoyed the day.
-Moral of the story: when next Branch 71 holds a picnic, put on your running shoes, pack your lunch and togs and come along. A pleasant relaxing day is promised to one and all.
+> The afternoon concluded all too soon with afternoon tea at Ron's house and subsequent embarkation for the return trip, back to the hustle and bustle of the mainland. Thank you Ron, for so graciously facillitating the invasion of your privacy by such a mob of eager beavers. All those present enjoyed the day.
+>> Moral of the story: when next Branch 71 holds a picnic, put on your running shoes, pack your lunch and togs and come along. A pleasant relaxing day is promised to one and all.
 
 ## National Field Day 1972 - Station ZL1ABL
 
