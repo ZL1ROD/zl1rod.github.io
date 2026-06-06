@@ -24,4 +24,4 @@ site_sidebar:
   - title: "Repeater Work"
     children:
       - title: "2018 Upgrade"
-        url: /repeater-work/2018upgrade/
+        url: /repeater_upgrade_2018/
