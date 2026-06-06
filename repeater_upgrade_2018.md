@@ -1,6 +1,6 @@
 ---
 title: "2018 Upgrade for the 730 Repeater"
-permalink: /2018upgrade/
+permalink: /repeater_upgrade_2018/
 ---
 
 In the latter half of 2017 our repeater started having intermittent issues which gradually increased in severity.
