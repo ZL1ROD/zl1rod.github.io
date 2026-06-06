@@ -1,5 +1,4 @@
 ---
-layout: single
 title: "2018 Upgrade for the 730 Repeater"
 permalink: /2018upgrade/
 ---
