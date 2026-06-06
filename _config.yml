@@ -9,4 +9,15 @@ plugins:
 
 minimal_mistakes_skin: "default"
 
-navigation: true
+navigation: true  # we see top bar
+
+# Global default values applied to collections and pages during build
+defaults:
+  - scope:
+      path: "" # An empty string means apply to ALL files in the repository
+      type: "pages" # Applies specifically to static page files (.md, .html)
+    values:
+      layout: "single" # Forces pages to use the layout container that supports sidebars
+      sidebar:
+        nav: "site_sidebar" # Injects your custom sidebar menu configuration automatically
+
