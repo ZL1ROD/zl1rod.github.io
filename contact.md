@@ -1,6 +1,6 @@
 ---
 title: "Club Information"
-permalink: /contact.md/
+permalink: /contact/
 ---
 
 #### Contacts
