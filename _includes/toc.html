@@ -1,4 +1,4 @@
-<!-- Custom Right-Hand Column Space Weather Panel powered by PyScript -->
+<!-- Custom Right-Hand Column Space Weather Panel powered by MicroPython -->
 <nav class="toc">
   <header><h4 class="nav__title" style="letter-spacing: 0;"><i class="fas fa-satellite-dish"></i> Solar Telemetry</h4></header>
   
@@ -11,19 +11,23 @@
   </div>
 </nav>
 
-<!-- Current 2026 PyScript Release Engine Assets -->
-<link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
-<script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
+<!-- Current PyScript Release Engine Assets -->
+<link rel="stylesheet" href="https://pyscript.net">
+<script type="module" src="https://pyscript.net"></script>
 
-<script type="py">
+<!-- MicroPython Execution Block -->
+<script type="mpy">
 import json
 from pyscript.fetch import fetch
 from js import document
 
 async def get_solar_data():
     try:
-        # 1. Fetch Sunspot & Solar Flux Index via modern pyscript.fetch
-        indices_url = "https://noaa.gov"
+        # Route through a CORS proxy to bypass browser network security restrictions
+        proxy_prefix = "https://corsproxy.io?"
+        
+        # 1. Fetch Sunspot & Solar Flux Index
+        indices_url = proxy_prefix + "https://noaa.gov"
         data1 = await fetch(indices_url).json()
         latest_row = data1[-1]
         
@@ -41,7 +45,7 @@ async def get_solar_data():
             sfi_el.style.color = '#69f0ae'
         
         # 2. Fetch Live Planetary Kp Index status
-        kp_url = "https://noaa.gov"
+        kp_url = proxy_prefix + "https://noaa.gov"
         data2 = await fetch(kp_url).json()
         kp_val = data2[-1].get('kp_index', 'N/A')
         
@@ -55,15 +59,14 @@ async def get_solar_data():
                 kp_el.style.color = '#69f0ae'
                 
     except Exception as e:
-        print(f"Telemetry execution failed: {e}")
-        # Soft fallback values in case of NOAA endpoint connection timeouts
+        print("Telemetry execution failed:", e)
         for element_id in ['toc-solar-ssn', 'toc-solar-sfi', 'toc-solar-kp']:
             el = document.getElementById(element_id)
             if el:
                 el.innerText = 'Offline'
                 el.style.color = '#ff5252'
 
-# Start the fetch promise chain loop smoothly
+# MicroPython asyncio task initialization logic
 import asyncio
 asyncio.ensure_future(get_solar_data())
 </script>
