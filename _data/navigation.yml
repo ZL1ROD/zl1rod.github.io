@@ -21,7 +21,7 @@ site_sidebar:
       - title: "Repeater History"
         url: /repeater_history/
 
-  - title: "Tags"
+  - title: "News Categories/Tags"
     children:
       - title: "Browse by Category"
         url: /categories/
