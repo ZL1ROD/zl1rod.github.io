@@ -1,88 +1,90 @@
 <!-- Custom Right-Hand Column Space Weather Panel powered by MicroPython -->
 <nav class="toc" id="solar-telemetry-panel">
-      <header>
-        <h4 class="nav__title" style="letter-spacing: 0; margin-bottom: 10px; margin-top: 0; font-size: 1.1em; color: #ffab40; font-weight: 600;">
-          <i class="fas fa-satellite-dish"></i> Solar Telemetry
-        </h4>
-      </header>
-      
-      <div style="background: #111115; color: #fff; padding: 14px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; border: 1px solid #2d2d3a; width: 100%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
-        
-        <!-- NASA SDO Live Sunspots Visual Feed -->
-        <div style="text-align: center; margin-bottom: 12px; position: relative;">
-          <img id="solar-sdo-image" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIF.jpg" alt="NASA SDO Gold Intensitygram (Live Sunspots)" style="width: 100%; border-radius: 6px; border: 1px solid #2d2d3a; background: #000; aspect-ratio: 1; object-fit: cover; display: block;" onerror="this.src='https://images.nasa.gov/favicon.ico'; this.style.opacity=0.3;" />
-          <div style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 4px; font-size: 0.7em; color: #ffab40; font-family: monospace; border: 1px solid #444; letter-spacing: 0.5px;">SDO HMIIF (LIVE)</div>
-        </div>
+  <header>
+    <h4 class="nav__title" style="letter-spacing: 0; margin-bottom: 10px;">
+      <i class="fas fa-satellite-dish"></i> Solar Telemetry
+    </h4>
+  </header>
+  
+  <div style="background: #111115; color: #fff; padding: 8px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; border: 1px solid #2d2d3a; width: 100%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+    
+    <!-- NASA SDO Live Sunspots Visual Feed -->
+    <div style="text-align: center; margin-bottom: 12px; position: relative;">
+      <img id="solar-sdo-image" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_0193.jpg" alt="NASA SDO Gold Intensitygram (Live Sunspots)" style="width: 100%; border-radius: 6px; border: 1px solid #2d2d3a; background: #000; aspect-ratio: 1; object-fit: cover; display: block;" onerror="this.src='https://images.nasa.gov/favicon.ico'; this.style.opacity=0.3;" />
+      <div style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 4px; font-size: 0.7em; color: #ffab40; font-family: monospace; border: 1px solid #444; letter-spacing: 0.5px;">SDO HMIIF (LIVE)</div>
+    </div>
 
-        <!-- Digital Telemetry Grid -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; font-family: monospace; font-size: 0.85em;">
-          <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-sfi">
-            <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Solar Flux</div>
-            <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-sfi">---</div>
-          </div>
-          <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-ssn">
-            <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Sunspots</div>
-            <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-ssn">---</div>
-          </div>
-          <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-kp">
-            <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Planetary Kp</div>
-            <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-kp">---</div>
-          </div>
-          <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-flare">
-            <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Recent Flare</div>
-            <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-flare">---</div>
-          </div>
-        </div>
-
-        <!-- SFI Visual key / Swatch indicator -->
-        <div style="margin-bottom: 15px;">
-          <div style="font-size: 0.75em; color: #999; display: flex; justify-content: space-between; font-weight: bold;">
-            <span>SFI Spectrum:</span>
-            <span id="sfi-status-label" style="text-transform: uppercase; letter-spacing: 0.5px;">Loading...</span>
-          </div>
-          <div style="display: flex; gap: 4px; margin-top: 5px; align-items: center; height: 10px;">
-            <div id="swatch-0" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Poor (&lt;70)"></div>
-            <div id="swatch-1" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Fair (70-90)"></div>
-            <div id="swatch-2" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Moderate (90-120)"></div>
-            <div id="swatch-3" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Good (120-150)"></div>
-            <div id="swatch-4" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Excellent (&gt;150)"></div>
-          </div>
-        </div>
-
-        <!-- Active Band Conditions Matrix -->
-        <div style="border-top: 1px solid #2d2d3a; padding: 10px 0;">
-          <div style="font-size: 0.8em; color: #888; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Band Propagation</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: monospace; font-size: 0.85em;">
-            <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
-              <span id="led-10m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
-              <span style="color: #aaa; font-weight: bold;">10m:</span>
-              <span id="status-10m" style="color: #888;">---</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
-              <span id="led-20m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
-              <span style="color: #aaa; font-weight: bold;">20m:</span>
-              <span id="status-20m" style="color: #888;">---</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
-              <span id="led-40m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
-              <span style="color: #aaa; font-weight: bold;">40m:</span>
-              <span id="status-40m" style="color: #888;">---</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
-              <span id="led-80m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
-              <span style="color: #aaa; font-weight: bold;">80m:</span>
-              <span id="status-80m" style="color: #888;">---</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Live Smart Bulletin/Assessment -->
-        <p id="solar-assessment" style="font-size: 0.78em; color: #aaa; margin: 4px 0 0 0; line-height: 1.4; border-top: 1px solid #2d2d3a; padding-top: 10px;">
-          Synchronizing with NOAA SWPC space satellites...
-        </p>
-
+    <!-- Digital Telemetry Grid -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; font-family: monospace; font-size: 0.85em;">
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-sfi">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Solar Flux</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-sfi">---</div>
       </div>
-    </nav>
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-ssn">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Sunspots</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-ssn">---</div>
+      </div>
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-kp">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Planetary Kp</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-kp">---</div>
+      </div>
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-flare">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Recent Flare</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-flare">---</div>
+      </div>
+    </div>
+
+    <!-- SFI Visual key / Swatch indicator -->
+    <div style="margin-bottom: 15px;">
+      <div style="font-size: 0.75em; color: #999; display: flex; justify-content: space-between; font-weight: bold;">
+        <span>SFI Spectrum:</span>
+        <span id="sfi-status-label" style="text-transform: uppercase; letter-spacing: 0.5px;">Loading...</span>
+      </div>
+      <div style="display: flex; gap: 4px; margin-top: 5px; align-items: center; height: 10px;">
+        <div id="swatch-0" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Poor (<70)"></div>
+        <div id="swatch-1" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Fair (70-90)"></div>
+        <div id="swatch-2" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Moderate (90-120)"></div>
+        <div id="swatch-3" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Good (120-150)"></div>
+        <div id="swatch-4" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Excellent (>150)"></div>
+      </div>
+    </div>
+
+    <!-- Active Band Conditions Matrix -->
+    <div style="border-top: 1px solid #2d2d3a; padding: 10px 0;">
+      <div style="font-size: 0.8em; color: #888; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Band Propagation</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-family: monospace; font-size: 0.85em;">
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-10m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">10m:</span>
+          <span id="status-10m" style="color: #888;">---</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-20m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">20m:</span>
+          <span id="status-20m" style="color: #888;">---</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-40m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">40m:</span>
+          <span id="status-40m" style="color: #888;">---</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-80m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">80m:</span>
+          <span id="status-80m" style="color: #888;">---</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Smart Bulletin/Assessment -->
+    <div style="font-size: 0.8em; color: #888; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Flux Report</div>
+    <p id="solar-assessment" style="font-size: 0.78em; color: #aaa; margin: 4px 0 0 0; line-height: 1.4; border-top: 1px solid #2d2d3a; padding-top: 10px;">
+      Synchronizing with NOAA SWPC space satellites...
+    </p>
+
+  </div>
+</nav>
+
 
 <!-- MicroPython Execution Block -->
 <script type="mpy">
@@ -123,19 +125,20 @@ def get_flare_class(flux):
         return "B1.0"
 
 # Main Telemetry Processing Entry
-async def retrieve_metrics():
+async def retrieve_metrics(test=False):
     # Secure SWPC NOAA real-time endpoints
     url_indices = "https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json"
     url_kp = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
     url_goes = "https://services.swpc.noaa.gov/json/goes/primary/xrays-6-hour.json"
 
-    # Default fallbacks
-    sfi = 75.0
-    ssn = 15
-    kp = 2.0
-    flare_str = "B1.2"
+    # Default fallbacks (or if test=True)
+    sfi = 75.0  # [60,71,91,96,121,131,151]
+    ssn = 15    # [10,30,70]
+    kp = 2.0    # [2.5,3.5,4.5,5.5,6.5,]
     raw_flux = 1.2e-7
-    xray_payload = None
+    flare_str = "B1.2"
+    xray_payload = None  # or a list with 2 entries. last one is kp_index. e.g. [1,1.5]
+    xray_payload = [1,1.5]
 
     # 1. Fetch SFI (Solar Flux) and SSN (Sunspot Number)
     try:
@@ -144,8 +147,9 @@ async def retrieve_metrics():
             sfi_payload = await response.json()
             if isinstance(sfi_payload, list) and len(sfi_payload) > 0:
                 latest = sfi_payload[-1]
-                sfi = parse_numeric(latest.get("f10.7", sfi))
-                ssn = int(parse_numeric(latest.get("ssn", ssn)))
+                if not test:
+                    sfi = parse_numeric(latest.get("f10.7", sfi))
+                    ssn = int(parse_numeric(latest.get("ssn", ssn)))
                 
                 document.getElementById("toc-solar-sfi").innerText = str(round(sfi))
                 document.getElementById("toc-solar-ssn").innerText = str(ssn)
@@ -158,7 +162,8 @@ async def retrieve_metrics():
         if response_kp.status == 200:
             kp_payload = await response_kp.json()
             if isinstance(kp_payload, list) and len(kp_payload) > 0:
-                kp = parse_numeric(kp_payload[-1].get("kp_index", kp))
+                if not test:
+                    kp = parse_numeric(kp_payload[-1].get("kp_index", kp))
                 document.getElementById("toc-solar-kp").innerText = f"{kp:.1f}"
     except Exception as e:
         print("Kp fetch error, defaulting:", e)
@@ -167,10 +172,12 @@ async def retrieve_metrics():
     try:
         response_goes = await fetch(url_goes)
         if response_goes.status == 200:
-            xray_payload = await response_goes.json()
+            if not test:
+                xray_payload = await response_goes.json()
             if isinstance(xray_payload, list) and len(xray_payload) > 0:
-                raw_flux = parse_numeric(xray_payload[-1].get("flux", 0.0))
-                flare_str = get_flare_class(raw_flux)
+                if not test:
+                    raw_flux = parse_numeric(xray_payload[-1].get("flux", 0.0))
+                    flare_str = get_flare_class(raw_flux)
                 document.getElementById("toc-solar-flare").innerText = flare_str
     except Exception as e:
         print("GOES X-Ray fetch error, defaulting:", e)
@@ -327,5 +334,5 @@ async def retrieve_metrics():
 
 # Schedule and run async telemetry update task
 import asyncio
-asyncio.create_task(retrieve_metrics())
+asyncio.create_task(retrieve_metrics(True))
 </script>
