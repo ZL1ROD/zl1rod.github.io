@@ -18,27 +18,26 @@
 <!-- MicroPython Execution Block -->
 <script type="mpy">
 import json
-import urllib.parse
 from pyscript.fetch import fetch
-from js import document
+from js import document, encodeURIComponent
 
 async def get_solar_data():
     try:
-        # Use the correct API gateway for the AllOrigins proxy
+        # 1. Correct API proxy endpoint for allorigins
         proxy_base = "https://api.allorigins.win/get?url="
         
-        # 1. Fetch Sunspot & Solar Flux Index from NOAA Space Weather Prediction Center
-        # Using SWPC's live "state-of-the-space-environment" json containing recent SFI and SSN
-        target1 = urllib.parse.quote("https://services.swpc.noaa.gov/json/state-of-the-space-environment.json")
-        data1_raw = await fetch(proxy_base + target1).json()
+        # 2. NOAA structured JSON endpoints for sunspots & Kp index
+        target1 = "https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json"
+        target2 = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
         
-        # AllOrigins wraps the payload as a raw string inside the 'contents' property
+        # --- Fetch Sunspot (SSN) & Solar Flux Index (SFI) ---
+        url1 = proxy_base + encodeURIComponent(target1)
+        data1_raw = await fetch(url1).json()
+        
+        # AllOrigins returns response string inside the 'contents' key
         data1 = json.loads(data1_raw['contents'])
+        latest_row = data1[-1]
         
-        # Grab the latest recorded state from the list
-        latest_row = data1[-1] if data1 else {}
-        
-        # SWPC uses 'ssn' for Sunspot Number and 'f10.7' or equivalent indexes
         ssn_val = str(round(latest_row.get('ssn', 0)))
         sfi_val = str(round(latest_row.get('f10.7', 0)))
         
@@ -52,15 +51,12 @@ async def get_solar_data():
             sfi_el.innerText = sfi_val
             sfi_el.style.color = '#69f0ae'
         
-        # 2. Fetch Live Planetary Kp Index status
-        target2 = urllib.parse.quote("https://services.swpc.noaa.gov/json/planetary_k_index_1m.json")
-        data2_raw = await fetch(proxy_base + target2).json()
+        # --- Fetch Live Planetary Kp Index status ---
+        url2 = proxy_base + encodeURIComponent(target2)
+        data2_raw = await fetch(url2).json()
         
         data2 = json.loads(data2_raw['contents'])
-        
-        # Grab the latest Kp index reading
-        latest_kp = data2[-1] if data2 else {}
-        kp_val = latest_kp.get('kp_index', 'N/A')
+        kp_val = data2[-1].get('kp_index', 'N/A')
         
         kp_el = document.getElementById('toc-solar-kp')
         if kp_el:
