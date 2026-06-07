@@ -12,7 +12,7 @@ site_sidebar:
         url: /repeater/
       - title: "Contact"
         url: /contact/
-  - title: "News & Logs"
+      - title: "News & Logs"
         url: /news/           # Points straight to your new chronological feed
   - title: "History Pages"
     children:
