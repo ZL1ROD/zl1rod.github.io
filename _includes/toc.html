@@ -1,17 +1,55 @@
 <!-- Custom Right-Hand Column Space Weather Panel powered by MicroPython -->
 <nav class="toc">
-  <header><h4 class="nav__title" style="letter-spacing: 0;"><i class="fas fa-satellite-dish"></i> Solar Telemetry</h4></header>
+  <header>
+    <h4 class="nav__title" style="letter-spacing: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+      <i class="fas fa-solar-panel"></i> Solar Telemetry
+    </h4>
+  </header>
   
-  <div style="background: #1e1e24; color: #fff; padding: 15px; border-radius: 6px; font-family: monospace; border: 1px solid #444; width: 100%;">
-    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.95em;">
-      <div><strong>SSN (Sunspots):</strong> <span id="toc-solar-ssn" style="color: #ff9800;">Loading...</span></div>
-      <div><strong>SFI (Solar Flux):</strong> <span id="toc-solar-sfi" style="color: #ff9800;">Loading...</span></div>
-      <div><strong>Planetary Kp:</strong> <span id="toc-solar-kp" style="color: #ff9800;">Loading...</span></div>
+  <div style="background: #19191d; color: #fff; padding: 14px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, monospace; border: 1px solid #2d2d34; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    
+    <!-- Real-time Radio Propagation Metrics -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9em; margin-bottom: 12px;">
+      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #ff9800;">
+        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Solar Flux (SFI)</span>
+        <div id="toc-solar-sfi" style="font-size: 1.3em; font-weight: bold; color: #ffab40; margin-top: 2px;">Loading...</div>
+      </div>
+      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #00e676;">
+        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Sunspots (SSN)</span>
+        <div id="toc-solar-ssn" style="font-size: 1.3em; font-weight: bold; color: #00e676; margin-top: 2px;">Loading...</div>
+      </div>
+      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #2979ff;">
+        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Geomagnetic Kp</span>
+        <div id="toc-solar-kp" style="font-size: 1.3em; font-weight: bold; color: #2979ff; margin-top: 2px;">Loading...</div>
+      </div>
+      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #d500f9;">
+        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Solar Flares</span>
+        <div id="toc-solar-flare" style="font-size: 1.3em; font-weight: bold; color: #d500f9; margin-top: 2px;">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Live SDO Satellite View Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 6px;">
+      <span style="font-size: 11px; font-weight: bold; letter-spacing: 0.5px; color: #aaa; text-transform: uppercase;">Live Satellite Feed</span>
+      <select id="sdo-channel-selector" style="background: #23232a; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 10px; padding: 2px 4px; cursor: pointer;">
+        <option value="HMIC">Visible Sunspots (HMI IC)</option>
+        <option value="0193">Coronal Holes (AIA 193)</option>
+        <option value="0304">Solar Loops (AIA 304)</option>
+      </select>
+    </div>
+
+    <!-- Image Container -->
+    <div style="position: relative; border-radius: 6px; overflow: hidden; background: #000; padding: 4px; display: flex; justify-content: center; border: 1px solid #333;">
+      <img id="sdo-image" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_HMIC.jpg" alt="SDO Live Feed" style="width: 100%; height: auto; display: block; border-radius: 4px; transition: opacity 0.2s ease-in-out;" />
+    </div>
+
+    <div style="text-align: right; font-size: 9px; color: #666; margin-top: 6px;">
+      <i class="fas fa-sync"></i> Real-time NOAA / NASA Observatories
     </div>
   </div>
 </nav>
 
-<!-- Current PyScript Release Engine Assets -->
+<!-- PyScript Core Assets -->
 <link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
 <script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
 
@@ -19,57 +57,86 @@
 <script type="mpy">
 import json
 from pyscript.fetch import fetch
-from js import document, encodeURIComponent
+from js import document, console
+
+# Change satellite image on select options
+def switch_sdo_image(event):
+    channel = event.target.value
+    img_element = document.getElementById("sdo-image")
+    if img_element:
+        img_element.src = f"https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_{channel}.jpg"
+
+# Bind selection drop-down listener
+selector = document.getElementById("sdo-channel-selector")
+if selector:
+    selector.addEventListener("change", switch_sdo_image)
 
 async def get_solar_data():
     try:
-        # 1. Correct API proxy endpoint for allorigins
-        proxy_base = "https://api.allorigins.win/get?url="
+        # NOAA actual direct JSON endpoints (Native CORS Allowed)
+        target_indices = "https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json"
+        target_kp = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
+        target_flares = "https://services.swpc.noaa.gov/json/goes/primary/xray-flares-latest.json"
         
-        # 2. NOAA structured JSON endpoints for sunspots & Kp index
-        target1 = "https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json"
-        target2 = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
+        # --- 1. Fetch SSN (Sunspots) & SFI (Solar Flux) ---
+        res_ind = await fetch(target_indices)
+        if res_ind.status == 200:
+            data1 = await res_ind.json()
+            latest_row = data1[-1]
+            ssn_val = str(round(latest_row.get('ssn', 0)))
+            sfi_val = str(round(latest_row.get('f10.7', 0)))
+            
+            ssn_el = document.getElementById('toc-solar-ssn')
+            sfi_el = document.getElementById('toc-solar-sfi')
+            
+            if ssn_el:
+                ssn_el.innerText = ssn_val
+                ssn_el.style.color = '#69f0ae'
+            if sfi_el:
+                sfi_el.innerText = sfi_val
+                sfi_el.style.color = '#ffb74d'
         
-        # --- Fetch Sunspot (SSN) & Solar Flux Index (SFI) ---
-        url1 = proxy_base + encodeURIComponent(target1)
-        data1_raw = await fetch(url1).json()
-        
-        # AllOrigins returns response string inside the 'contents' key
-        data1 = json.loads(data1_raw['contents'])
-        latest_row = data1[-1]
-        
-        ssn_val = str(round(latest_row.get('ssn', 0)))
-        sfi_val = str(round(latest_row.get('f10.7', 0)))
-        
-        ssn_el = document.getElementById('toc-solar-ssn')
-        sfi_el = document.getElementById('toc-solar-sfi')
-        
-        if ssn_el:
-            ssn_el.innerText = ssn_val
-            ssn_el.style.color = '#69f0ae'
-        if sfi_el:
-            sfi_el.innerText = sfi_val
-            sfi_el.style.color = '#69f0ae'
-        
-        # --- Fetch Live Planetary Kp Index status ---
-        url2 = proxy_base + encodeURIComponent(target2)
-        data2_raw = await fetch(url2).json()
-        
-        data2 = json.loads(data2_raw['contents'])
-        kp_val = data2[-1].get('kp_index', 'N/A')
-        
-        kp_el = document.getElementById('toc-solar-kp')
-        if kp_el:
-            kp_el.innerText = str(kp_val)
-            if kp_val != 'N/A' and float(kp_val) >= 4.0:
-                kp_el.style.color = '#ff5252'
-                kp_el.style.fontWeight = 'bold'
-            else:
-                kp_el.style.color = '#69f0ae'
-                
+        # --- 2. Fetch Live Planetary Kp Index status ---
+        res_kp = await fetch(target_kp)
+        if res_kp.status == 200:
+            data2 = await res_kp.json()
+            latest_kp = data2[-1]
+            kp_raw = latest_kp.get('kp_index', latest_kp.get('kp', 0.0))
+            kp_val = float(kp_raw)
+            
+            kp_el = document.getElementById('toc-solar-kp')
+            if kp_el:
+                kp_el.innerText = f"{kp_val:.2f}"
+                if kp_val >= 5.0:
+                    kp_el.style.color = '#ff5252'  # Geomagnetic storm
+                    kp_el.style.fontWeight = 'bold'
+                elif kp_val >= 4.0:
+                    kp_el.style.color = '#ffb74d'  # Active field
+                else:
+                    kp_el.style.color = '#69f0ae'  # Quiet band conditions
+                    
+        # --- 3. Fetch Live GOES Solar Flare Intensity ---
+        res_flare = await fetch(target_flares)
+        if res_flare.status == 200:
+            data3 = await res_flare.json()
+            latest_flare = data3[-1]
+            flare_val = latest_flare.get('max_class', latest_flare.get('current_class', 'A0.0'))
+            
+            flare_el = document.getElementById('toc-solar-flare')
+            if flare_el:
+                flare_el.innerText = flare_val
+                # Style depending on flare severity
+                if flare_val.startswith('X'):
+                    flare_el.style.color = '#ff5252'  # Total HF radio blackout
+                    flare_el.style.fontWeight = 'bold'
+                elif flare_val.startswith('M'):
+                    flare_el.style.color = '#ffd740'  # Moderate flare / alerts
+                else:
+                    flare_el.style.color = '#69f0ae'  # Quiet Sun baseline
+                    
     except Exception as e:
-        print("Telemetry routing execution failed:", e)
-        for element_id in ['toc-solar-ssn', 'toc-solar-sfi', 'toc-solar-kp']:
+        console.error("Telemetry routing execution failed:", str(e))
+        for element_id in ['toc-solar-ssn', 'toc-solar-sfi', 'toc-solar-kp', 'toc-solar-flare']:
             el = document.getElementById(element_id)
             if el:
                 el.innerText = 'Offline'
