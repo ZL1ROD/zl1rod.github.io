@@ -88,7 +88,7 @@
 <script type="mpy">
 import json
 import math
-from pyscript.fetch import fetch
+from pyscript import fetch
 from js import window, document
 
 # Resolve encodeURIComponent on the current JS bridge safely
@@ -124,9 +124,6 @@ def get_flare_class(flux):
 
 # Main Telemetry Processing Entry
 async def retrieve_metrics():
-    # Stable proxy router via corsproxy.io (returns raw unaltered JSON payload)
-    proxy_url = "https://corsproxy.io/?"
-    
     # Secure SWPC NOAA real-time endpoints
     url_indices = "https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json"
     url_kp = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
@@ -142,39 +139,39 @@ async def retrieve_metrics():
 
     # 1. Fetch SFI (Solar Flux) and SSN (Sunspot Number)
     try:
-        print("1.",proxy_url + encodeURIComponent(url_indices))
-        response = await fetch(proxy_url + encodeURIComponent(url_indices))
-        sfi_payload = await response.json()
-        if isinstance(sfi_payload, list) and len(sfi_payload) > 0:
-            latest = sfi_payload[-1]
-            sfi = parse_numeric(latest.get("f10.7", sfi))
-            ssn = int(parse_numeric(latest.get("ssn", ssn)))
-            
-            document.getElementById("toc-solar-sfi").innerText = str(round(sfi))
-            document.getElementById("toc-solar-ssn").innerText = str(ssn)
+        response = await fetch(url_indices)
+        if response.status == 200:
+            sfi_payload = await response.json()
+            if isinstance(sfi_payload, list) and len(sfi_payload) > 0:
+                latest = sfi_payload[-1]
+                sfi = parse_numeric(latest.get("f10.7", sfi))
+                ssn = int(parse_numeric(latest.get("ssn", ssn)))
+                
+                document.getElementById("toc-solar-sfi").innerText = str(round(sfi))
+                document.getElementById("toc-solar-ssn").innerText = str(ssn)
     except Exception as e:
         print("SFI/SSN fetch error, defaulting:", e)
 
     # 2. Fetch Geomagnetic Planetary noise index
     try:
-        print("2.", proxy_url + encodeURIComponent(url_kp))
-        response_kp = await fetch(proxy_url + encodeURIComponent(url_kp))
-        kp_payload = await response_kp.json()
-        if isinstance(kp_payload, list) and len(kp_payload) > 0:
-            kp = parse_numeric(kp_payload[-1].get("kp_index", kp))
-            document.getElementById("toc-solar-kp").innerText = f"{kp:.1f}"
+        response_kp = await fetch(url_kp)
+        if response_kp.status == 200:
+            kp_payload = await response_kp.json()
+            if isinstance(kp_payload, list) and len(kp_payload) > 0:
+                kp = parse_numeric(kp_payload[-1].get("kp_index", kp))
+                document.getElementById("toc-solar-kp").innerText = f"{kp:.1f}"
     except Exception as e:
         print("Kp fetch error, defaulting:", e)
 
     # 3. Fetch GOES solar flares current status
     try:
-        print("3.", proxy_url + encodeURIComponent(url_goes))
-        response_goes = await fetch(proxy_url + encodeURIComponent(url_goes))
-        xray_payload = await response_goes.json()
-        if isinstance(xray_payload, list) and len(xray_payload) > 0:
-            raw_flux = parse_numeric(xray_payload[-1].get("flux", 0.0))
-            flare_str = get_flare_class(raw_flux)
-            document.getElementById("toc-solar-flare").innerText = flare_str
+        response_goes = await fetch(url_goes)
+        if response_goes.status == 200:
+            xray_payload = await response_goes.json()
+            if isinstance(xray_payload, list) and len(xray_payload) > 0:
+                raw_flux = parse_numeric(xray_payload[-1].get("flux", 0.0))
+                flare_str = get_flare_class(raw_flux)
+                document.getElementById("toc-solar-flare").innerText = flare_str
     except Exception as e:
         print("GOES X-Ray fetch error, defaulting:", e)
 
