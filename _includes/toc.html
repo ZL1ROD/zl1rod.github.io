@@ -68,5 +68,5 @@ async def get_solar_data():
 
 # MicroPython asyncio task initialization logic
 import asyncio
-asyncio.ensure_future(get_solar_data())
+asyncio.create_task(get_solar_data())
 </script>
