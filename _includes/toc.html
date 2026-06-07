@@ -1,147 +1,330 @@
 <!-- Custom Right-Hand Column Space Weather Panel powered by MicroPython -->
-<nav class="toc">
+<nav class="toc" id="solar-telemetry-panel">
   <header>
-    <h4 class="nav__title" style="letter-spacing: 0; display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-      <i class="fas fa-solar-panel"></i> Solar Telemetry
+    <h4 class="nav__title" style="letter-spacing: 0; margin-bottom: 10px;">
+      <i class="fas fa-satellite-dish"></i> Solar Telemetry
     </h4>
   </header>
   
-  <div style="background: #19191d; color: #fff; padding: 14px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, monospace; border: 1px solid #2d2d34; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  <div style="background: #111115; color: #fff; padding: 14px; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; border: 1px solid #2d2d3a; width: 100%; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
     
-    <!-- Real-time Radio Propagation Metrics -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9em; margin-bottom: 12px;">
-      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #ff9800;">
-        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Solar Flux (SFI)</span>
-        <div id="toc-solar-sfi" style="font-size: 1.3em; font-weight: bold; color: #ffab40; margin-top: 2px;">Loading...</div>
+    <!-- NASA SDO Live Sunspots Visual Feed -->
+    <div style="text-align: center; margin-bottom: 12px; position: relative;">
+      <img id="solar-sdo-image" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_512_HMIIF.jpg" alt="NASA SDO Gold Intensitygram (Live Sunspots)" style="width: 100%; border-radius: 6px; border: 1px solid #2d2d3a; background: #000; aspect-ratio: 1; object-fit: cover; display: block;" onerror="this.src='https://images.nasa.gov/favicon.ico'; this.style.opacity=0.3;" />
+      <div style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.7); padding: 2px 6px; border-radius: 4px; font-size: 0.7em; color: #ffab40; font-family: monospace; border: 1px solid #444; letter-spacing: 0.5px;">SDO HMIIF (LIVE)</div>
+    </div>
+
+    <!-- Digital Telemetry Grid -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; font-family: monospace; font-size: 0.85em;">
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-sfi">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Solar Flux</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-sfi">---</div>
       </div>
-      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #00e676;">
-        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Sunspots (SSN)</span>
-        <div id="toc-solar-ssn" style="font-size: 1.3em; font-weight: bold; color: #00e676; margin-top: 2px;">Loading...</div>
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-ssn">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Sunspots</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-ssn">---</div>
       </div>
-      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #2979ff;">
-        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Geomagnetic Kp</span>
-        <div id="toc-solar-kp" style="font-size: 1.3em; font-weight: bold; color: #2979ff; margin-top: 2px;">Loading...</div>
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-kp">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Planetary Kp</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-kp">---</div>
       </div>
-      <div style="background: #23232a; padding: 8px; border-radius: 5px; border-left: 3px solid #d500f9;">
-        <span style="font-size: 10px; color: #888; text-transform: uppercase;">Solar Flares</span>
-        <div id="toc-solar-flare" style="font-size: 1.3em; font-weight: bold; color: #d500f9; margin-top: 2px;">Loading...</div>
+      <div style="background: #181822; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #555;" id="container-flare">
+        <div style="color: #888; font-size: 0.8em; text-transform: uppercase;">Recent Flare</div>
+        <div style="font-size: 1.25em; font-weight: bold; color: #ffab40;" id="toc-solar-flare">---</div>
       </div>
     </div>
 
-    <!-- Live SDO Satellite View Header -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; margin-bottom: 6px;">
-      <span style="font-size: 11px; font-weight: bold; letter-spacing: 0.5px; color: #aaa; text-transform: uppercase;">Live Satellite Feed</span>
-      <select id="sdo-channel-selector" style="background: #23232a; color: #fff; border: 1px solid #444; border-radius: 4px; font-size: 10px; padding: 2px 4px; cursor: pointer;">
-        <option value="HMIC">Visible Sunspots (HMI IC)</option>
-        <option value="0193">Coronal Holes (AIA 193)</option>
-        <option value="0304">Solar Loops (AIA 304)</option>
-      </select>
+    <!-- SFI Visual key / Swatch indicator -->
+    <div style="margin-bottom: 15px;">
+      <div style="font-size: 0.75em; color: #999; display: flex; justify-content: space-between; font-weight: bold;">
+        <span>SFI Spectrum:</span>
+        <span id="sfi-status-label" style="text-transform: uppercase; letter-spacing: 0.5px;">Loading...</span>
+      </div>
+      <div style="display: flex; gap: 4px; margin-top: 5px; align-items: center; height: 10px;">
+        <div id="swatch-0" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Poor (<70)"></div>
+        <div id="swatch-1" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Fair (70-90)"></div>
+        <div id="swatch-2" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Moderate (90-120)"></div>
+        <div id="swatch-3" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Good (120-150)"></div>
+        <div id="swatch-4" style="flex: 1; height: 5px; border-radius: 2px; background: #2d2d3a; transition: all 0.3s ease;" title="Excellent (>150)"></div>
+      </div>
     </div>
 
-    <!-- Image Container -->
-    <div style="position: relative; border-radius: 6px; overflow: hidden; background: #000; padding: 4px; display: flex; justify-content: center; border: 1px solid #333;">
-      <img id="sdo-image" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_HMIC.jpg" alt="SDO Live Feed" style="width: 100%; height: auto; display: block; border-radius: 4px; transition: opacity 0.2s ease-in-out;" />
+    <!-- Active Band Conditions Matrix -->
+    <div style="border-top: 1px solid #2d2d3a; padding: 10px 0;">
+      <div style="font-size: 0.8em; color: #888; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Band Propagation</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: monospace; font-size: 0.85em;">
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-10m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">10m:</span>
+          <span id="status-10m" style="color: #888;">---</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-20m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">20m:</span>
+          <span id="status-20m" style="color: #888;">---</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-40m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">40m:</span>
+          <span id="status-40m" style="color: #888;">---</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #181822; padding: 5px 8px; border-radius: 4px;">
+          <span id="led-80m" style="width: 8px; height: 8px; border-radius: 50%; background: #444; display: inline-block;"></span>
+          <span style="color: #aaa; font-weight: bold;">80m:</span>
+          <span id="status-80m" style="color: #888;">---</span>
+        </div>
+      </div>
     </div>
 
-    <div style="text-align: right; font-size: 9px; color: #666; margin-top: 6px;">
-      <i class="fas fa-sync"></i> Real-time NOAA / NASA Observatories
-    </div>
+    <!-- Live Smart Bulletin/Assessment -->
+    <p id="solar-assessment" style="font-size: 0.78em; color: #aaa; margin: 4px 0 0 0; line-height: 1.4; border-top: 1px solid #2d2d3a; padding-top: 10px;">
+      Synchronizing with NOAA SWPC space satellites...
+    </p>
+
   </div>
 </nav>
 
-<!-- PyScript Core Assets -->
+<!-- Current PyScript Release Engine Assets -->
 <link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
 <script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
 
 <!-- MicroPython Execution Block -->
 <script type="mpy">
 import json
+import math
 from pyscript.fetch import fetch
-from js import document, console
+from js import window, document
 
-# Change satellite image on select options
-def switch_sdo_image(event):
-    channel = event.target.value
-    img_element = document.getElementById("sdo-image")
-    if img_element:
-        img_element.src = f"https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_{channel}.jpg"
+# Resolve encodeURIComponent on the current JS bridge safely
+encodeURIComponent = window.encodeURIComponent
 
-# Bind selection drop-down listener
-selector = document.getElementById("sdo-channel-selector")
-if selector:
-    selector.addEventListener("change", switch_sdo_image)
-
-async def get_solar_data():
+# Clean float/int parsers
+def parse_numeric(v, default=0.0):
     try:
-        # NOAA actual direct JSON endpoints (Native CORS Allowed)
-        target_indices = "https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json"
-        target_kp = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
-        target_flares = "https://services.swpc.noaa.gov/json/goes/primary/xray-flares-latest.json"
-        
-        # --- 1. Fetch SSN (Sunspots) & SFI (Solar Flux) ---
-        res_ind = await fetch(target_indices)
-        if res_ind.status == 200:
-            data1 = await res_ind.json()
-            latest_row = data1[-1]
-            ssn_val = str(round(latest_row.get('ssn', 0)))
-            sfi_val = str(round(latest_row.get('f10.7', 0)))
-            
-            ssn_el = document.getElementById('toc-solar-ssn')
-            sfi_el = document.getElementById('toc-solar-sfi')
-            
-            if ssn_el:
-                ssn_el.innerText = ssn_val
-                ssn_el.style.color = '#69f0ae'
-            if sfi_el:
-                sfi_el.innerText = sfi_val
-                sfi_el.style.color = '#ffb74d'
-        
-        # --- 2. Fetch Live Planetary Kp Index status ---
-        res_kp = await fetch(target_kp)
-        if res_kp.status == 200:
-            data2 = await res_kp.json()
-            latest_kp = data2[-1]
-            kp_raw = latest_kp.get('kp_index', latest_kp.get('kp', 0.0))
-            kp_val = float(kp_raw)
-            
-            kp_el = document.getElementById('toc-solar-kp')
-            if kp_el:
-                kp_el.innerText = f"{kp_val:.2f}"
-                if kp_val >= 5.0:
-                    kp_el.style.color = '#ff5252'  # Geomagnetic storm
-                    kp_el.style.fontWeight = 'bold'
-                elif kp_val >= 4.0:
-                    kp_el.style.color = '#ffb74d'  # Active field
-                else:
-                    kp_el.style.color = '#69f0ae'  # Quiet band conditions
-                    
-        # --- 3. Fetch Live GOES Solar Flare Intensity ---
-        res_flare = await fetch(target_flares)
-        if res_flare.status == 200:
-            data3 = await res_flare.json()
-            latest_flare = data3[-1]
-            flare_val = latest_flare.get('max_class', latest_flare.get('current_class', 'A0.0'))
-            
-            flare_el = document.getElementById('toc-solar-flare')
-            if flare_el:
-                flare_el.innerText = flare_val
-                # Style depending on flare severity
-                if flare_val.startswith('X'):
-                    flare_el.style.color = '#ff5252'  # Total HF radio blackout
-                    flare_el.style.fontWeight = 'bold'
-                elif flare_val.startswith('M'):
-                    flare_el.style.color = '#ffd740'  # Moderate flare / alerts
-                else:
-                    flare_el.style.color = '#69f0ae'  # Quiet Sun baseline
-                    
-    except Exception as e:
-        console.error("Telemetry routing execution failed:", str(e))
-        for element_id in ['toc-solar-ssn', 'toc-solar-sfi', 'toc-solar-kp', 'toc-solar-flare']:
-            el = document.getElementById(element_id)
-            if el:
-                el.innerText = 'Offline'
-                el.style.color = '#ff5252'
+        return float(v)
+    except:
+        return default
 
+# Translate raw flux readings from GOES xray channels directly to Class indicators
+def get_flare_class(flux):
+    if flux <= 0:
+        return "A1.0"
+    try:
+        exp = math.log10(flux)
+        if flux < 1e-7:
+            # A / B Class borders
+            val = flux / 1e-8
+            return f"A{val:.1f}" if val < 1.0 else f"B{val/10:.1f}"
+        elif flux < 1e-6:
+            return f"B{flux/1e-7:.1f}"
+        elif flux < 1e-5:
+            return f"C{flux/1e-6:.1f}"
+        elif flux < 1e-4:
+            return f"M{flux/1e-5:.1f}"
+        else:
+            return f"X{flux/1e-4:.1f}"
+    except:
+        return "B1.0"
+
+# Main Telemetry Processing Entry
+async def retrieve_metrics():
+    # Stable proxy router via corsproxy.io (returns raw unaltered JSON payload)
+    proxy_url = "https://corsproxy.io/?"
+    
+    # Secure SWPC NOAA real-time endpoints
+    url_indices = "https://services.swpc.noaa.gov/json/solar-cycle/observed-solar-cycle-indices.json"
+    url_kp = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
+    url_goes = "https://services.swpc.noaa.gov/json/goes/primary/xrays-6-hour.json"
+
+    # Default fallbacks
+    sfi = 75.0
+    ssn = 15
+    kp = 2.0
+    flare_str = "B1.2"
+
+    # 1. Fetch SFI (Solar Flux) and SSN (Sunspot Number)
+    try:
+        sfi_payload = await fetch(proxy_url + encodeURIComponent(url_indices)).json()
+        if isinstance(sfi_payload, list) and len(sfi_payload) > 0:
+            latest = sfi_payload[-1]
+            sfi = parse_numeric(latest.get("f10.7", sfi))
+            ssn = int(parse_numeric(latest.get("ssn", ssn)))
+            
+            document.getElementById("toc-solar-sfi").innerText = str(round(sfi))
+            document.getElementById("toc-solar-ssn").innerText = str(ssn)
+    except Exception as e:
+        print("SFI/SSN fetch error, defaulting:", e)
+
+    # 2. Fetch Geomagnetic Planetary noise index
+    try:
+        kp_payload = await fetch(proxy_url + encodeURIComponent(url_kp)).json()
+        if isinstance(kp_payload, list) and len(kp_payload) > 0:
+            kp = parse_numeric(kp_payload[-1].get("kp_index", kp))
+            document.getElementById("toc-solar-kp").innerText = f"{kp:.1f}"
+    except Exception as e:
+        print("Kp fetch error, defaulting:", e)
+
+    # 3. Fetch GOES solar flares current status
+    try:
+        xray_payload = await fetch(proxy_url + encodeURIComponent(url_goes)).json()
+        if isinstance(xray_payload, list) and len(xray_payload) > 0:
+            raw_flux = parse_numeric(xray_payload[-1].get("flux", 0.0))
+            flare_str = get_flare_class(raw_flux)
+            document.getElementById("toc-solar-flare").innerText = flare_str
+    except Exception as e:
+        print("GOES X-Ray fetch error, defaulting:", e)
+
+    # 4. Color-code primary digital readouts
+    # SFI Color indicators
+    sfi_el = document.getElementById("toc-solar-sfi")
+    container_sfi = document.getElementById("container-sfi")
+    if sfi < 70:
+        sfi_color, sfi_label, swatch_idx = "#ff5252", "Poor", 0
+    elif sfi < 90:
+        sfi_color, sfi_label, swatch_idx = "#ffab40", "Fair", 1
+    elif sfi < 120:
+        sfi_color, sfi_label, swatch_idx = "#ffd740", "Moderate", 2
+    elif sfi < 150:
+        sfi_color, sfi_label, swatch_idx = "#69f0ae", "Good", 3
+    else:
+        sfi_color, sfi_label, swatch_idx = "#00e676", "Excellent", 4
+
+    sfi_el.style.color = sfi_color
+    container_sfi.style.borderLeftColor = sfi_color
+    document.getElementById("sfi-status-label").innerText = sfi_label
+    document.getElementById("sfi-status-label").style.color = sfi_color
+
+    # Update active SFI Swatch on the spectrum indicator
+    for idx in range(5):
+        swatch = document.getElementById(f"swatch-{idx}")
+        if swatch:
+            if idx == swatch_idx:
+                swatch.style.background = sfi_color
+                swatch.style.boxShadow = f"0 0 8px {sfi_color}"
+                swatch.style.height = "10px"
+            else:
+                swatch.style.background = "#2b2b36"
+                swatch.style.height = "5px"
+                swatch.style.boxShadow = "none"
+
+    # SSN Color Indicators
+    ssn_el = document.getElementById("toc-solar-ssn")
+    container_ssn = document.getElementById("container-ssn")
+    if ssn < 15:
+        ssn_color = "#9e9e9e"
+    elif ssn < 50:
+        ssn_color = "#fb8c00"
+    else:
+        ssn_color = "#00e676"
+    ssn_el.style.color = ssn_color
+    container_ssn.style.borderLeftColor = ssn_color
+
+    # Kp Color Indicators
+    kp_el = document.getElementById("toc-solar-kp")
+    container_kp = document.getElementById("container-kp")
+    if kp < 3.0:
+        kp_color = "#69f0ae"
+    elif kp < 4.0:
+        kp_color = "#ffd740"
+    elif kp < 5.0:
+        kp_color = "#fb8c00"
+    else:
+        kp_color = f"#ff5252"
+        kp_el.style.fontWeight = "bold"
+    kp_el.style.color = kp_color
+    container_kp.style.borderLeftColor = kp_color
+
+    # Flare Class Color indicators
+    flare_el = document.getElementById("toc-solar-flare")
+    container_flare = document.getElementById("container-flare")
+    if flare_str.startswith("M"):
+         flare_color = "#fb8c00"
+    elif flare_str.startswith("X"):
+         flare_color = "#ff5252"
+         flare_el.style.fontWeight = "bold"
+    else:
+         flare_color = "#69f0ae"
+    flare_el.style.color = flare_color
+    container_flare.style.borderLeftColor = flare_color
+
+    # 5. Combined Band Evaluation Logic (SFI + Kp + Flare activity)
+    is_major_flare = flare_str.startswith("M") or flare_str.startswith("X")
+
+    # --- Evaluate 10m ---
+    if sfi < 80:
+        status_10, color_10 = "Closed", "#ff5252"
+    elif sfi < 110:
+        status_10, color_10 = ("Poor", "#ff5252") if (kp >= 4 or xray_payload and len(xray_payload) > 0 and raw_flux > 1e-4) else ("Fair", "#ffab40")
+    else:
+        if kp >= 5 or flare_str.startswith("X"):
+            status_10, color_10 = "Closed", "#ff5252"
+        elif kp >= 3:
+            status_10, color_10 = "Fair", "#ffab40"
+        else:
+            status_10, color_10 = "Good", "#69f0ae"
+
+    # --- Evaluate 20m ---
+    if sfi < 70:
+        status_20, color_20 = "Fair", "#ffab40"
+    else:
+        if kp >= 6 or flare_str.startswith("X"):
+            status_20, color_20 = "Poor", "#ff5252"
+        elif kp >= 4:
+            status_20, color_20 = "Fair", "#ffab40"
+        else:
+            status_20, color_20 = "Good", "#69f0ae"
+
+    # --- Evaluate 40m ---
+    if kp >= 5 or is_major_flare:
+        status_40, color_40 = "Poor", "#ff5252"
+    elif kp >= 3:
+        status_40, color_40 = "Fair", "#ffab40"
+    else:
+        status_40, color_40 = "Good", "#69f0ae"
+
+    # --- Evaluate 80m ---
+    if kp >= 4 or is_major_flare:
+        status_80, color_80 = "Poor", "#ff5252"
+    elif kp >= 2:
+        status_80, color_80 = "Fair", "#ffab40"
+    else:
+        status_80, color_80 = "Good", "#69f0ae"
+
+    # Apply Band matrix updates
+    for band, val, col in [("10m", status_10, color_10), ("20m", status_20, color_20), ("40m", status_40, color_40), ("80m", status_80, color_80)]:
+        document.getElementById(f"status-{band}").innerText = val
+        document.getElementById(f"status-{band}").style.color = col
+        document.getElementById(f"led-{band}").style.backgroundColor = col
+        document.getElementById(f"led-{band}").style.boxShadow = f"0 0 6px {col}"
+
+    # 6. Generate dynamic telemetry bulletin
+    bulletin = ""
+    if kp >= 5:
+        bulletin = f"⚠️ Major Geomagnetic Storm active (Kp={kp:.0f}). High absorption levels and noisy channels expected. Low bands severely degraded."
+    elif flare_str.startswith("X"):
+        bulletin = f"🚨 Solar flare ({flare_str}) active. Standard Sudden Ionospheric Disturbances (SIDs) might attenuate signals across 40m - 80m."
+    elif flare_str.startswith("M"):
+        bulletin = f"⚠️ Flare event ({flare_str}) in progress. Focus on upper bands while lower-frequency signals may suffer absorption."
+    else:
+        if sfi >= 130:
+            if kp < 3:
+                bulletin = f"✨ Propagation conditions are excellent! SFI ({int(sfi)}) is high and the geomagnetic field is quiet. Amazing daytime DX on 10m-20m."
+            else:
+                bulletin = f"📈 Large SFI ({int(sfi)}) is boosting ionization. However, Kp={kp:.1f} signifies high noise levels."
+        elif sfi >= 95:
+            if kp < 3:
+                bulletin = f"🟢 Quiet geomagnetic field ensures very stable channels. High F2 charge supports clear, long-distance 20m/40m propagation."
+            else:
+                bulletin = f"🟡 Moderate solar flux (SFI={int(sfi)}), with marginal noise thresholds. Solid 20m contacts are easily viable."
+        else:
+            if kp < 3:
+                bulletin = f"🔵 Low solar flux. Upper bands closed; focus on lower bands (40m-80m) which are exceptionally quiet and open for night DX."
+            else:
+                bulletin = f"📉 Low solar activity paired with geomagnetic instability. Expect marginal contacts on lower bands."
+    
+    document.getElementById("solar-assessment").innerText = bulletin
+
+# Schedule and run async telemetry update task
 import asyncio
-asyncio.create_task(get_solar_data())
+asyncio.create_task(retrieve_metrics())
 </script>
