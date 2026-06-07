@@ -11,9 +11,9 @@
         <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
           <label for="sdo-channel-select" style="font-size: 0.75em; color: #888; font-family: monospace; font-weight: bold; text-transform: uppercase; white-space: nowrap;">SDO Feed:</label>
           <select id="sdo-channel-select" style="flex: 1; background: #181822; color: #ffab40; border: 1px solid #2d2d3a; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-family: inherit; font-weight: bold; cursor: pointer; outline: none; transition: all 0.3s ease;">
-            <option value="HMIIF" style="background: #111115; color: #fff;">Visible Sunspots (HMI IF)</option>
-            <option value="0193" style="background: #111115; color: #fff;">Coronal Holes (AIA 193)</option>
-            <option value="0304" style="background: #111115; color: #fff;">Solar Loops (AIA 304)</option>
+            <option value="HMIIF" style="background: #111115; color: #fff; font-size: 0.75em;">Visible Sunspots (HMI IF)</option>
+            <option value="0193" style="background: #111115; color: #fff; font-size: 0.75em;">Coronal Holes (AIA 193)</option>
+            <option value="0304" style="background: #111115; color: #fff; font-size: 0.75em;">Solar Loops (AIA 304)</option>
           </select>
         </div>
     
@@ -363,5 +363,5 @@ if select_el:
 
 # Schedule and run async telemetry update task
 import asyncio
-asyncio.create_task(retrieve_metrics(True))
+asyncio.create_task(retrieve_metrics())  # False to test
 </script>
