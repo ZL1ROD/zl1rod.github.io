@@ -23,12 +23,16 @@ from js import document
 
 async def get_solar_data():
     try:
-        # Route through a CORS proxy to bypass browser network security restrictions
-        proxy_prefix = "https://corsproxy.io?"
+        # Use the highly stable allorigins proxy network to safely bypass CORS
+        proxy_base = "https://allorigins.win"
         
         # 1. Fetch Sunspot & Solar Flux Index
-        indices_url = proxy_prefix + "https://noaa.gov"
-        data1 = await fetch(indices_url).json()
+        target1 = "https://noaa.gov"
+        # We append encodeURIComponent equivalent strings natively or let the API ingest it
+        data1_raw = await fetch(proxy_base + target1).json()
+        
+        # The proxy returns the raw data as a string inside the 'contents' key
+        data1 = json.loads(data1_raw['contents'])
         latest_row = data1[-1]
         
         ssn_val = str(round(latest_row.get('ssn', 0)))
@@ -45,8 +49,10 @@ async def get_solar_data():
             sfi_el.style.color = '#69f0ae'
         
         # 2. Fetch Live Planetary Kp Index status
-        kp_url = proxy_prefix + "https://noaa.gov"
-        data2 = await fetch(kp_url).json()
+        target2 = "https://noaa.gov"
+        data2_raw = await fetch(proxy_base + target2).json()
+        
+        data2 = json.loads(data2_raw['contents'])
         kp_val = data2[-1].get('kp_index', 'N/A')
         
         kp_el = document.getElementById('toc-solar-kp')
@@ -59,14 +65,13 @@ async def get_solar_data():
                 kp_el.style.color = '#69f0ae'
                 
     except Exception as e:
-        print("Telemetry execution failed:", e)
+        print("Telemetry routing execution failed:", e)
         for element_id in ['toc-solar-ssn', 'toc-solar-sfi', 'toc-solar-kp']:
             el = document.getElementById(element_id)
             if el:
                 el.innerText = 'Offline'
                 el.style.color = '#ff5252'
 
-# MicroPython asyncio task initialization logic
 import asyncio
 asyncio.create_task(get_solar_data())
 </script>
