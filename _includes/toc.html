@@ -11,20 +11,20 @@
   </div>
 </nav>
 
-<!-- Load core PyScript runtime directly into the template -->
-<link rel="stylesheet" href="https://pyscript.net">
-<script type="module" src="https://pyscript.net"></script>
+<!-- Current 2026 PyScript Release Engine Assets -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
 
 <script type="py">
 import json
-from pyodide.http import pyfetch
+from pyscript.fetch import fetch
 from js import document
 
 async def get_solar_data():
     try:
-        # 1. Fetch Sunspot & Solar Flux Index directly (Bypasses browser CORS restrictions natively)
-        res1 = await pyfetch("https://noaa.gov")
-        data1 = await res1.json()
+        # 1. Fetch Sunspot & Solar Flux Index via modern pyscript.fetch
+        indices_url = "https://noaa.gov"
+        data1 = await fetch(indices_url).json()
         latest_row = data1[-1]
         
         ssn_val = str(round(latest_row.get('ssn', 0)))
@@ -41,14 +41,13 @@ async def get_solar_data():
             sfi_el.style.color = '#69f0ae'
         
         # 2. Fetch Live Planetary Kp Index status
-        res2 = await pyfetch("https://noaa.gov")
-        data2 = await res2.json()
+        kp_url = "https://noaa.gov"
+        data2 = await fetch(kp_url).json()
         kp_val = data2[-1].get('kp_index', 'N/A')
         
         kp_el = document.getElementById('toc-solar-kp')
         if kp_el:
             kp_el.innerText = str(kp_val)
-            # Apply condition warning logic (Red for Storm, Green for Quiet)
             if kp_val != 'N/A' and float(kp_val) >= 4.0:
                 kp_el.style.color = '#ff5252'
                 kp_el.style.fontWeight = 'bold'
@@ -56,15 +55,15 @@ async def get_solar_data():
                 kp_el.style.color = '#69f0ae'
                 
     except Exception as e:
-        print(f"Telemetry layout execution dropped: {e}")
-        # Flash fallback error state inside elements
+        print(f"Telemetry execution failed: {e}")
+        # Soft fallback values in case of NOAA endpoint connection timeouts
         for element_id in ['toc-solar-ssn', 'toc-solar-sfi', 'toc-solar-kp']:
             el = document.getElementById(element_id)
             if el:
                 el.innerText = 'Offline'
                 el.style.color = '#ff5252'
 
-# Fire off the data collector script instantly in background layout thread
+# Start the fetch promise chain loop smoothly
 import asyncio
 asyncio.ensure_future(get_solar_data())
 </script>
