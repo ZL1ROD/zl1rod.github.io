@@ -142,6 +142,7 @@ async def retrieve_metrics():
 
     # 1. Fetch SFI (Solar Flux) and SSN (Sunspot Number)
     try:
+        print("1.",proxy_url + encodeURIComponent(url_indices))
         response = await fetch(proxy_url + encodeURIComponent(url_indices))
         sfi_payload = await response.json()
         if isinstance(sfi_payload, list) and len(sfi_payload) > 0:
@@ -156,6 +157,7 @@ async def retrieve_metrics():
 
     # 2. Fetch Geomagnetic Planetary noise index
     try:
+        print("2.", proxy_url + encodeURIComponent(url_kp))
         response_kp = await fetch(proxy_url + encodeURIComponent(url_kp))
         kp_payload = await response_kp.json()
         if isinstance(kp_payload, list) and len(kp_payload) > 0:
@@ -166,6 +168,7 @@ async def retrieve_metrics():
 
     # 3. Fetch GOES solar flares current status
     try:
+        print("3.", proxy_url + encodeURIComponent(url_goes))
         response_goes = await fetch(proxy_url + encodeURIComponent(url_goes))
         xray_payload = await response_goes.json()
         if isinstance(xray_payload, list) and len(xray_payload) > 0:
