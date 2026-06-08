@@ -30,7 +30,7 @@ site_sidebar:
       - title: "Browse by Tag"
         url: /tags/
    - title: "Club Newsletters"
-        url: /newsletters/
+     url: /newsletters/
 
 # Need:
 # - Club Newsletters, Resources,
