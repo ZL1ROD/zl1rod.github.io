@@ -12,6 +12,8 @@ site_sidebar:
         url: /repeater/
       - title: "Contact"
         url: /contact/
+      - title: "Resources"
+        url: /resources/
       - title: "News & Logs"
         url: /news/           # Points straight to your new chronological feed
   - title: "History Pages"
@@ -27,6 +29,8 @@ site_sidebar:
         url: /categories/
       - title: "Browse by Tag"
         url: /tags/
+  - title: "Club Newsletters"
+        url: /newsletters/
 
 # Need:
 # - Club Newsletters, Resources,
