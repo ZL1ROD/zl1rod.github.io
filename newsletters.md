@@ -2,6 +2,7 @@
 title: "Club Newsletters"
 permalink: /newsletters/
 ---
+A collection of club newsletters over the years. Alas some newsletters were lost when the Webserver failed.
 
 ### 2019
 - [2019 general report](/assets/newsletters/rarc_agm_2019.pdf){:target="_blank" rel="noopener"}
@@ -27,4 +28,3 @@ permalink: /newsletters/
 - [October](/assets/newsletters/rarc_newsletter_october_2017.pdf/){:target="_blank" rel="noopener"}
 - [November](/assets/newsletters/rarc_newsletter_november_2017.pdf/){:target="_blank" rel="noopener"}
 
-Alas some newsletters were lost when the Webserver failed.
