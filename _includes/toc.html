@@ -13,11 +13,11 @@
             <option value="HMIIF" style="background: #111115; color: #fff;">Visible Sunspots (HMI IF)</option>
             <option value="0193" style="background: #111115; color: #fff;">Coronal Holes (AIA 193)</option>
             <option value="0304" style="background: #111115; color: #fff;">Solar Loops (AIA 304)</option>
-			<option value="0131" style="background: #111115; color: #fff;">Super hot (AIA 131)</option>
+            <option value="0131" style="background: #111115; color: #fff;">Super hot (AIA 131)</option>
           </select>
         </div>
 
-	  
+      
     <!-- NASA SDO Live Sunspots Visual Feed -->
     <div style="text-align: center; margin-bottom: 5px; position: relative;">
       <img id="solar-sdo-image" src="https://sdo.gsfc.nasa.gov/assets/img/latest/latest_256_0304.jpg" alt="NASA SDO Gold Intensitygram (Solar Loops)" style="width: 100%; border-radius: 6px; border: 1px solid #2d2d3a; background: #000; aspect-ratio: 1; object-fit: cover; display: block;" onerror="this.src='https://images.nasa.gov/favicon.ico'; this.style.opacity=0.3;" />
@@ -100,7 +100,7 @@
   </header>
   <center>
     <a href="https://www.hamqsl.com/solar.html" title="Click to add Solar-Terrestrial Data to your website!">
-	<img src="https://www.hamqsl.com/solar100sc.php" style="width: 75%; background: #000;"></a>
+    <img src="https://www.hamqsl.com/solar100sc.php" style="width: 75%; background: #000;"></a>
   </center>
 </div>
 
@@ -355,17 +355,17 @@ async def retrieve_metrics(test=False):
     document.getElementById("solar-assessment").innerText = bulletin
 
 solar_info = {"HMIIF": "Sunspots",
-			  "0304": "Prominances (10-15m)",
-			  "0193": "storm holes",
-			  "0131": "early warning" } # 131 early warning, 193 dark=mag storm, 304 Prominences + for 10,12,15
-			  
+              "0304": "Prominances (10-15m)",
+              "0193": "storm holes",
+              "0131": "early warning" } # 131 early warning, 193 dark=mag storm, 304 Prominences + for 10,12,15
+              
 # SDO Live Imagery Channel Selection
 def on_sdo_change(event):
     select_el = document.getElementById("sdo-channel-select")
     if not select_el:
         return
     channel = select_el.value
-	msg = solar_info[channel]
+    msg = solar_info[channel]
     img_el = document.getElementById("solar-sdo-image")
     badge_el = document.getElementById("solar-sdo-badge")
     if img_el:
