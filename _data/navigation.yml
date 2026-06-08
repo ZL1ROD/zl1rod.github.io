@@ -29,8 +29,7 @@ site_sidebar:
         url: /categories/
       - title: "Browse by Tag"
         url: /tags/
-  - title: "Club Newsletters"
-        url: /newsletters/
+/
 
 # Need:
 # - Club Newsletters, Resources,
